@@ -1,0 +1,150 @@
+<!DOCTYPE.html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<meta charset="UTF-8">
+<title>Form validation with JavaScript</title>
+<style>
+body{
+background: #D7FBFF;
+}
+#coun{
+height: 50px;
+  border: 1px solid black;
+}
+#gender{
+
+height: 50px;
+  border: 1px solid black;
+}
+#wrapper {
+width: 30%;
+margin: 50px auto;
+padding: 50px;
+background: #D7FBFF;
+}
+form {
+margin: 30px auto;
+}
+.textInput {
+border: none;
+height: 28px;
+margin: 2px;
+border: 1px solid #6B7363;
+font-size: 1.2em;
+padding: 5px;
+width: 95%;
+}
+.textInput:focus {
+outline: none;
+}
+.btn {
+width: 98.6%;
+border: none;
+margin-top: 5px;
+color: white;
+background-color: #3b5998;
+border-radius: 5px;
+padding: 12px;
+}
+</style>
+</head>
+<div id="wrapper">
+ <form method="POST"  onsubmit="return Validate()" name="vform" id="forma" >
+  <div id="saxeli_div">
+    <label>წიგნის სახელი</label> <br>
+    <input type="text" name="saxeli" class="textInput">
+    <div id="saxeli_error"></div>
+        <div id="avtori_div">
+    <label>ავტორის სახელი</label> <br>
+     <input type="text" name="avtori" class="textInput">
+     <div id="avtori_error"></div>
+     <div id="check_div">
+
+       <h3>გთხოვთ მონიშნოთ წიგნი</h3>
+       <input type="checkbox" name="book" value="უთაო მხედარი">
+<label for="book"> უთაო მხედარი</label><br>
+<input type="checkbox" name="book" value="ტრიუმფალური თაღი">
+<label for="book">ტრიუმფალური თაღი</label><br>
+<input type="checkbox" name="book" value="საიდუმლო კუნძულიი">
+<label for="book">საიდუმლო კუნძული</label><br>
+  	<input type='button' name="Register" value="Search" class="btn" id='nah'>
+</html>
+<script>
+var saxeli = document.forms['vform']['saxeli'];
+var avtori = document.forms['vform']['avtori'];
+var saxeli_error = document.getElementById('saxeli_error');
+var avtori_error = document.getElementById('avtori_error');
+
+function Validate() {
+  if (saxeli.value == "") {
+    saxeli.style.border = "1px solid red";
+    document.getElementById('saxeli_div').style.color = "red";
+    saxeli_error.textContent = "სახელი აუცილებელია";
+    saxeli.focus();
+    return false;
+  }
+  if (saxeli.value.length <3) {
+    saxeli.style.border = "1px solid red";
+    document.getElementById('saxeli_div').style.color = "red";
+    saxeli_error.textContent = "სახელი აუცილებელია იყოს მეტი 3 სიმბოლოზე";
+    saxeli.focus();
+    return false;
+  }
+  if (saxeli.value.length >10) {
+    saxeli.style.border = "1px solid red";
+    document.getElementById('saxeli_div').style.color = "red";
+    saxeli_error.textContent = "სახელი აუცილებელია იყოს ნაკლები 10 სიმბოლოზე";
+    saxeli.focus();
+    return false;
+  }
+  if (avtori.value == "") {
+    avtori.style.border = "1px solid red";
+    document.getElementById('avtori_div').style.color = "red";
+    avtori_error.textContent = "ავტორი აუცილებელია";
+    avtori.focus();
+    return false;
+  }
+
+  if (avtori.value.length <3) {
+    avtori.style.border = "1px solid red";
+    document.getElementById('avtori_div').style.color = "red";
+    avtori_error.textContent = "ავტორის სახელი აუცილებელია იყოს მეტი 3 სიმბოლოზე";
+  avtori.focus();
+    return false;
+  }
+  if (avtori.value.length >10) {
+    avtori.style.border = "1px solid red";
+    document.getElementById('avtori_div').style.color = "red";
+    avtori_error.textContent = "ავტორის სახელი აუცილებელია იყოს ნაკლები 10 სიმბოლოზე";
+  avtori.focus();
+    return false;
+  }
+}
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script>
+       $(document).ready(function() {
+           $("#forma").click(function() {
+               $.ajax({
+                   url: "https://reqres.in/api/user?page=2",
+                   type: "get",
+                   data: {
+                       postId: 1
+                   },
+                   success: function(response) {
+
+                       console.log(response);
+
+                 },
+                   error: function(xhr) {
+
+                       console.log(error);
+var result = JSON.parse(response);
+                   }
+               });
+           });
+       });
+   </script>
